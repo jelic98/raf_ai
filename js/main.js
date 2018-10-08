@@ -10,20 +10,23 @@ const FRICTION = 0;
 
 var population;
 var simulators;
+var generationCounter;
 
 function setup() {
 	frameRate(1000 / ACTION_PAUSE);
 	initialization();
+	simulation();
 }
 
 function draw() {
-	if(!simulationRunning()) {
+	if(simulationRunning()) {
 		return;
 	}
 
 	selection();
 	reproduction();
 	simulation();
+	revision();
 }
 
 function initialization() {
@@ -34,6 +37,8 @@ function initialization() {
     	population[i] = new DNA();
     	simulators[i] = new Simulator();
 	}
+
+	generationCounter = 0;
 }
 
 function simulationRunning() {
@@ -42,7 +47,7 @@ function simulationRunning() {
 			return true;
 		}
 	}
-	
+
 	return false;
 }
 
@@ -65,6 +70,18 @@ function simulation() {
 	for(var i = 0; i < simulators.length; i++) {
 		simulators[i].simulate(population[i]);
 	}
+}
+
+function revision() {
+	var sum = 0;
+	var count = 0;
+
+	for(var i = 0; i < population.length; i++) {
+		sum += population[i].fitness;
+		count++;
+	}
+	
+	console.log("Generation #" + (++generationCounter) + " -> " + (sum / count));
 }
 
 function selectPartner(population) {
