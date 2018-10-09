@@ -5,15 +5,7 @@ var Bodies = Matter.Bodies;
 var Constraint = Matter.Constraint;
 var Events = Matter.Events;
 
-var canvasWidth;
-var canvasHeight;
-
 class Simulator {
-
-	constructor() {
-		// TODO Initialize constants only once
-		intializeConstants();
-	}
 
 	simulate(dna) {
 		this.clear();
@@ -49,7 +41,7 @@ class Simulator {
 			visible: false
 		});
 		
-		this.ball = Bodies.circle(canvasWidth * 0.5 + 1, 0, canvasWidth * 0.05, {
+		this.ball = Bodies.circle(canvasWidth * 0.5 + 1, 0, canvasWidth * 0.025, {
 			friction: FRICTION,
 			render: {
 				fillStyle: 'white'
@@ -138,19 +130,4 @@ class Simulator {
 			this.pad.torque = 0;
 		}
 	}
-}
-
-function intializeConstants() {
-	var totalRows = floor(sqrt(TOTAL_POPULATION));
-	var canvasRatio = 1 / totalRows;	
-
-	canvasWidth = (window.innerWidth ||
-    	document.documentElement.clientWidth ||
-        document.body.clientWidth ||
-        document.body.offsetWidth) * canvasRatio;
-
-	canvasHeight = (window.innerHeight ||
-    	document.documentElement.clientHeight ||
-        document.body.clientHeight ||
-        document.body.offsetHeight) * canvasRatio;
 }

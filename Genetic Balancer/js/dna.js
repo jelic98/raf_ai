@@ -9,7 +9,7 @@ class DNA {
 
 		var totalGenes = DURATION / ACTION_PAUSE;
 
-		for(var i = 0; i < totalGenes; i++) {
+		for(let i = 0; i < totalGenes; i++) {
       		this.genes[i] = this.randomGene();
     	}
   	}
@@ -19,7 +19,7 @@ class DNA {
 
     	var middle = floor(random(this.genes.length));
 
-    	for(var i = 0; i < this.genes.length; i++) {
+    	for(let i = 0; i < this.genes.length; i++) {
       		if(i > middle) {
 				child.genes[i] = this.genes[i];
 			}else {
