@@ -78,8 +78,15 @@ class Simulator {
 
 		var context = this;
 
+		this.duration = 0;
 		this.actionInterval = setInterval(function() {
+			if(context.duration > DURATION) {
+				clearInterval(this.actionInterval);
+				return;
+			}
+
 			context.actionCallback(dna);
+			context.duration += ACTION_PAUSE;
 		}, ACTION_PAUSE);
 	}
 	

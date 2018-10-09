@@ -2,7 +2,7 @@
 // Author: Lazar Jelic - ljelic17@raf.rs
 // Source: https://github.com/jelic98/raf_ai
 
-const TOTAL_POPULATION = 36;
+const TOTAL_POPULATION = 16;
 const MUTATION_RATE = 0.01;
 const MIN_FITNESS = 0.01;
 
@@ -95,12 +95,18 @@ function selection() {
 }
 
 function reproduction() {
+	var children = [];
+
 	for(let i = 0; i < population.length; i++) {
-		let partnerA = selectPartner(population);
-		let partnerB = selectPartner(population);
+		let partnerA = selectPartner(null, population);
+		let partnerB = selectPartner(partnerA, population);
 		
-		population[i] = partnerA.crossover(partnerB);
+		children[i] = partnerA.crossover(partnerB);
  	}
+
+	for(let i = 0; i < children.length; i++) {
+		population[i] = children[i];
+	}
 }
 
 function simulation() {
@@ -109,7 +115,17 @@ function simulation() {
 	}
 }
 
-function selectPartner(population) {
+function selectPartner(previous, population) {
+	var partner = previous;
+	
+	while(partner === previous || partner.fitness == MIN_FITNESS) {
+		partner = acceptReject(population);
+	}
+	
+	return partner;
+}
+
+function acceptReject(population) {
 	var emergencyExit = 0;
 
 	while(emergencyExit < 1000) {
