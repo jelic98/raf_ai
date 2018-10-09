@@ -1,0 +1,12 @@
+1
+- inicijalni fitness
+- nije nula zato sto se lopticu spusta tacno na podlogu i tu provodi vreme dok ne krene da se kotrlja
+
+2
+- prvi put shvata kako moze da kontrolise lopticu
+
+3
+- maksimalni fitness postignut 18 minuta treniranja
+- dnk je duzine 100 karaktera
+- cilj je da se balansira 10 sekundi
+- akciju preduzima na svakih 100 milisekundi
