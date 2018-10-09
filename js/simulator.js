@@ -86,10 +86,8 @@ class Simulator {
 
 		var context = this;
 
-		var actionInterval = setInterval(function() {
-			if(context.actionCallback(dna)) {
-				clearInterval(actionInterval);
-			}
+		this.actionInterval = setInterval(function() {
+			context.actionCallback(dna);
 		}, ACTION_PAUSE);
 	}
 	
@@ -111,6 +109,8 @@ class Simulator {
 	onCollision(a, b, dna) {
 		if((a === this.ball && b === this.ground)
 			|| (a === this.ground && b === this.ball)) {
+			clearInterval(this.actionInterval);
+			
 			dna.calculateFitness();
 
 			this.finished = dna.dead = true;
@@ -123,11 +123,11 @@ class Simulator {
 		var gene = dna.nextGene();
 
 		if(typeof gene === 'undefined') {
+			clearInterval(this.actionInterval);
+			
 			dna.calculateFitness();
 	
 			this.finished = true;
-	
-			return true;
 		}
 
 		if(gene === 'L') {
@@ -137,8 +137,6 @@ class Simulator {
 		}else {
 			this.pad.torque = 0;
 		}
-
-		return false;
 	}
 }
 

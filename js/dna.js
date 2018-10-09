@@ -40,6 +40,10 @@ class DNA {
 		}
 
 		this.fitness = (millis() - this.birthTime) / DURATION;
+		
+		if(this.fitness > 1) {
+			this.fitness = 1;
+		}
 	}
 
 	randomGene() {

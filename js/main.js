@@ -14,6 +14,7 @@ var generationCounter;
 
 function setup() {
 	frameRate(1000 / ACTION_PAUSE);
+
 	initialization();
 	simulation();
 }
