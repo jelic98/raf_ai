@@ -8,4 +8,4 @@ Bot koji pokušava da balansira lopticu znanjem stečenim primenom [genetskog al
 
 ### TODO
 * Physics dependency injection - Razdvojiti tela od same fizike, omogućiti da se može balansirati bilo šta
-* Single canvas - Umesto da se za svaku jedinku koristi poseban canvas, populaciju simulirati na jednom canvasu
+* Single canvas - Umesto da se za svaku jedinku koristi poseban canvas, celu populaciju simulirati na jednom canvasu
