@@ -30,18 +30,29 @@ class Simulator {
 			}
     	});
 		
-		this.pad = Bodies.rectangle(canvasWidth * 0.5, canvasHeight * 0.5, canvasWidth * 0.5, canvasHeight * 0.05, {
+		this.pad = Bodies.rectangle(
+			canvasWidth * 0.5,
+			canvasHeight * 0.5,
+			canvasWidth * 0.5,
+			canvasHeight * 0.05, {
 			render: {
          		fillStyle: 'white'
 			}	
 		});
 		
-		this.ground = Bodies.rectangle(canvasWidth * 0.5, canvasHeight, canvasWidth, 1, {
+		this.ground = Bodies.rectangle(
+			canvasWidth * 0.5,
+			canvasHeight,
+			canvasWidth,
+			1, {
 			isStatic: true,
 			visible: false
 		});
 		
-		this.ball = Bodies.circle(canvasWidth * 0.5 + 1, 0, canvasWidth * 0.025, {
+		this.ball = Bodies.circle(
+			canvasWidth * 0.5 + 1,
+			0,
+			canvasWidth * 0.025, {
 			friction: FRICTION,
 			render: {
 				fillStyle: 'white'
@@ -66,7 +77,10 @@ class Simulator {
 		var context = this;
 
 		Events.on(this.engine, 'collisionStart', function(event) {
-    		context.onCollision(event.pairs[0].bodyA, event.pairs[0].bodyB, dna);	
+			let a = event.pairs[0].bodyA;
+			let b = event.pairs[0].bodyB;
+    		
+			context.onCollision(a, b, dna);	
 		});
 
 		this.render.options.background = 'black';
@@ -114,7 +128,10 @@ class Simulator {
 
 			this.finished = dna.dead = true;
 
-			this.render.options.background = lerpColor(color(255, 0, 0), color(0, 255, 0), dna.fitness);
+			this.render.options.background = lerpColor(
+				color(255, 0, 0),
+				color(0, 255, 0),
+				dna.fitness);
 		}	
 	}  
 

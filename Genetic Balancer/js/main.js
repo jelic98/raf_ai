@@ -96,7 +96,13 @@ function revision() {
 		count++;
 	}
 	
-	console.log("Generation #" + (++generationCounter) + " -> " + (sum / count) + " [" + max + "]");
+	console.log("Generation #"
+		+ (++generationCounter)
+		+ " -> "
+		+ (sum / count)
+		+ " ["
+		+ max
+		+ "]");
 }
 
 function selection() {

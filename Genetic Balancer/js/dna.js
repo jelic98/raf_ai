@@ -17,10 +17,12 @@ class DNA {
 	crossover(partner) {
     	var child = new DNA();
 
-    	var middle = floor(random(this.genes.length));
+		var maxFitness = max(this.fitness, partner.fitness);
+    	var split = floor(maxFitness * (this.genes.length - 1));
 
     	for(let i = 0; i < this.genes.length; i++) {
-      		if(i > middle) {
+      		if((i <= split && maxFitness == this.fitness)
+				|| (i > split && maxFitness != this.fitness)) {
 				child.genes[i] = this.genes[i];
 			}else {
 				child.genes[i] = partner.genes[i];
