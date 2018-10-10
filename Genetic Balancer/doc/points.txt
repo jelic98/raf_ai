@@ -10,3 +10,5 @@
 - dnk je duzine 100 karaktera
 - cilj je da se balansira 10 sekundi
 - akciju preduzima na svakih 100 milisekundi
+
+BITNO: evolucija se nikad ne zaustavlja za razliku od nekih genetskih kada se nadje prva jedinka koja ima fitnes 1 prekida se
