@@ -4,6 +4,7 @@ var canvasHeight;
 var population;
 var simulators;
 var generationCounter;
+var currentMutation = MUTATION_RATE_START;
 var hasError = false;
 
 function setup() {
@@ -40,6 +41,12 @@ function inputValid() {
 		return false;
 	}
 
+	if(DURATION <= 0) {
+		console.error("Evolution target duration must be positive number. Change DURATION!");
+	
+		return false;
+	}
+
 	if(ACTION_PAUSE < 17) {
 		console.error("Maximum frame rate (60 fps) exceeded. Change ACTION_PAUSE!");
 	
@@ -50,8 +57,42 @@ function inputValid() {
 		return false;
 	}
 
-	// TODO Validate MUTATION_RATE, DURATION, MIN_FITNESS
+	if(MIN_FITNESS <= 0) {
+		console.error("Minimum fitness value must be positive number. Change MIN_FITNESS!");
+	
+		return false;
+	}
 
+	if(MUTATION_RATE_START < 0) {
+		console.error("Mutation starting value must be positive number. Change MUTATION_RATE_START!");
+	
+		return false;
+	}
+
+	if(MUTATION_RATE_END < 0) {
+		console.error("Mutation ending value must be positive number. Change MUTATION_RATE_END!");
+	
+		return false;
+	}
+
+	if(MUTATION_RATE_START < MUTATION_RATE_END) {
+		console.error("Mutation starting value must be greater than or equal to ending value. Change MUTATION_RATE_START or MUTATION_RATE_END!");
+	
+		return false;
+	}
+
+	if(MUTATION_RATE_DELTA < 0) {
+		console.error("Mutation step size must be positive number. Change MUTATION_RATE_DELTA!");
+	
+		return false;
+	}
+
+	if(MUTATION_GEN_PAUSE < 0) {
+		console.error("Mutation pause must be positive number. Change MUTATION_GEN_PAUSE!");
+	
+		return false;
+	}
+		
 	return true;
 }
 
@@ -130,6 +171,8 @@ function selection() {
 }
 
 function reproduction() {
+	updateMutation();
+
 	var children = [];
 
 	for(let i = 0; i < population.length; i++) {
@@ -145,6 +188,17 @@ function reproduction() {
 function simulation() {
 	for(let i = 0; i < simulators.length; i++) {
 		simulators[i].simulate(population[i]);
+	}
+}
+
+function updateMutation() {
+	if(generationCounter > MUTATION_GEN_PAUSE
+		&& generationCounter % MUTATION_GEN_PAUSE == 0) {
+		currentMutation -= MUTATION_RATE_DELTA;
+
+		if(currentMutation < MUTATION_RATE_END) {
+			currentMutation = MUTATION_RATE_END;
+		}
 	}
 }
 

@@ -14,7 +14,7 @@ class DNA {
     	}
   	}
  
-	crossover(partner) {
+	crossover(partner, mutation) {
     	var child = new DNA();
 
 		var maxFitness = max(this.fitness, partner.fitness);
@@ -28,7 +28,7 @@ class DNA {
 				child.genes[i] = partner.genes[i];
 			}
 
-      		if(random() < MUTATION_RATE) {
+      		if(random() < mutation) {
         		this.genes[i] = this.randomGene();
       		}
     	}
