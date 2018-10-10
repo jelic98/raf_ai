@@ -79,13 +79,24 @@ function simulationRunning() {
 function revision() {
 	var sum = 0;
 	var count = 0;
+	var max = MIN_FITNESS;
 
 	for(let i = 0; i < population.length; i++) {
-		sum += population[i].fitness;
+		let currentFitness = population[i].fitness;
+
+		if(currentFitness == 1) {
+			console.log("Evolved!");
+		}
+
+		if(currentFitness > max) {
+			max = currentFitness;
+		}
+
+		sum += currentFitness;
 		count++;
 	}
 	
-	console.log("Generation #" + (++generationCounter) + " -> " + (sum / count));
+	console.log("Generation #" + (++generationCounter) + " -> " + (sum / count) + " [" + max + "]");
 }
 
 function selection() {
@@ -104,9 +115,7 @@ function reproduction() {
 		children[i] = partnerA.crossover(partnerB);
  	}
 
-	for(let i = 0; i < children.length; i++) {
-		population[i] = children[i];
-	}
+	population = children;
 }
 
 function simulation() {
