@@ -1,25 +1,17 @@
-// Project: Genetic Balancer
-// Author: Lazar Jelic - ljelic17@raf.rs
-// Source: https://github.com/jelic98/raf_ai
-
-const TOTAL_POPULATION = 16;
-const MUTATION_RATE = 0.01;
-const MIN_FITNESS = 0.01;
-
-const DURATION = 10000;
-const ACTION_PAUSE = 100;
-
-const TORQUE = 0.1;
-const FRICTION = 0;
-
 var canvasWidth;
 var canvasHeight;
 
 var population;
 var simulators;
 var generationCounter;
+var hasError = false;
 
 function setup() {
+	if(!inputValid()) {
+		hasError = true;
+		return;
+	}
+
 	frameRate(1000 / ACTION_PAUSE);
 
 	initialization();
@@ -27,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-	if(simulationRunning()) {
+	if(hasError || simulationRunning()) {
 		return;
 	}
 
@@ -35,6 +27,32 @@ function draw() {
 	selection();
 	reproduction();
 	simulation();
+}
+
+function inputValid() {
+	if(TOTAL_POPULATION <= 1) {
+		console.error("Population must have multiple members. Change TOTAL_POPULATION!");
+
+		if(TOTAL_POPULATION < 0) {
+			console.error("Number of members in population has to be positive number.");
+		}
+
+		return false;
+	}
+
+	if(ACTION_PAUSE < 17) {
+		console.error("Maximum frame rate (60 fps) exceeded. Change ACTION_PAUSE!");
+	
+		if(ACTION_PAUSE < 0) {
+			console.error("Pause between action has to be positive number.");
+		}
+
+		return false;
+	}
+
+	// TODO Validate MUTATION_RATE, DURATION, MIN_FITNESS
+
+	return true;
 }
 
 function initialization() {
