@@ -30,72 +30,6 @@ function draw() {
 	simulation();
 }
 
-function inputValid() {
-	if(TOTAL_POPULATION <= 1) {
-		console.error("Population must have multiple members. Change TOTAL_POPULATION!");
-
-		if(TOTAL_POPULATION < 0) {
-			console.error("Number of members in population has to be positive number.");
-		}
-
-		return false;
-	}
-
-	if(DURATION <= 0) {
-		console.error("Evolution target duration must be positive number. Change DURATION!");
-	
-		return false;
-	}
-
-	if(ACTION_PAUSE < 17) {
-		console.error("Maximum frame rate (60 fps) exceeded. Change ACTION_PAUSE!");
-	
-		if(ACTION_PAUSE < 0) {
-			console.error("Pause between action has to be positive number.");
-		}
-
-		return false;
-	}
-
-	if(MIN_FITNESS <= 0) {
-		console.error("Minimum fitness value must be positive number. Change MIN_FITNESS!");
-	
-		return false;
-	}
-
-	if(MUTATION_RATE_START < 0) {
-		console.error("Mutation starting value must be positive number. Change MUTATION_RATE_START!");
-	
-		return false;
-	}
-
-	if(MUTATION_RATE_END < 0) {
-		console.error("Mutation ending value must be positive number. Change MUTATION_RATE_END!");
-	
-		return false;
-	}
-
-	if(MUTATION_RATE_START < MUTATION_RATE_END) {
-		console.error("Mutation starting value must be greater than or equal to ending value. Change MUTATION_RATE_START or MUTATION_RATE_END!");
-	
-		return false;
-	}
-
-	if(MUTATION_RATE_DELTA < 0) {
-		console.error("Mutation step size must be positive number. Change MUTATION_RATE_DELTA!");
-	
-		return false;
-	}
-
-	if(MUTATION_GEN_PAUSE < 0) {
-		console.error("Mutation pause must be positive number. Change MUTATION_GEN_PAUSE!");
-	
-		return false;
-	}
-		
-	return true;
-}
-
 function initialization() {
 	intializeConstants();
 	
@@ -176,8 +110,8 @@ function reproduction() {
 	var children = [];
 
 	for(let i = 0; i < population.length; i++) {
-		let partnerA = selectPartner(null, population);
-		let partnerB = selectPartner(partnerA, population);
+		let partnerA = selectPartner(null);
+		let partnerB = selectPartner(partnerA);
 		
 		children[i] = partnerA.crossover(partnerB);
  	}
@@ -202,17 +136,17 @@ function updateMutation() {
 	}
 }
 
-function selectPartner(previous, population) {
+function selectPartner(previous) {
 	var partner = previous;
 	
 	while(partner === previous || partner.fitness == MIN_FITNESS) {
-		partner = acceptReject(population);
+		partner = acceptReject();
 	}
 	
 	return partner;
 }
 
-function acceptReject(population) {
+function acceptReject() {
 	var emergencyExit = 0;
 
 	while(emergencyExit < 1000) {
