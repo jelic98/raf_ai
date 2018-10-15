@@ -113,7 +113,7 @@ function reproduction() {
 		let partnerA = selectPartner(null);
 		let partnerB = selectPartner(partnerA);
 		
-		children[i] = partnerA.crossover(partnerB);
+		children[i] = partnerA.crossover(partnerB, currentMutation);
  	}
 
 	population = children;
