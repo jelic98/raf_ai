@@ -1,14 +1,10 @@
 1
-- inicijalni fitness
-- nije nula zato sto se lopticu spusta tacno na podlogu i tu provodi vreme dok ne krene da se kotrlja
+- Inicijalni fitnes nije nula zato sto se loptica spusta na sredinu podloge i tu provodi vreme dok ne krene da se kotrlja
 
 2
-- prvi put shvata kako moze da kontrolise lopticu
+- Orvi put se shvata kako se moze kontrolisati loptica
 
 3
-- maksimalni fitness postignut 18 minuta treniranja
-- dnk je duzine 100 karaktera
-- cilj je da se balansira 10 sekundi
-- akciju preduzima na svakih 100 milisekundi
-
-BITNO: evolucija se nikad ne zaustavlja za razliku od nekih genetskih kada se nadje prva jedinka koja ima fitnes 1 prekida se
+- Maksimalan fitness postignut nakon 18 minuta treniranja
+- Evolucija se ne zaustavlja kada se nadje prva jedinka koja ima fitnes 100%
+- Mutacije uticu na jedinke sa dobrim fitnesom
