@@ -2,7 +2,7 @@
 - Inicijalni fitnes nije nula zato sto se loptica spusta na sredinu podloge i tu provodi vreme dok ne krene da se kotrlja
 
 2
-- Orvi put se shvata kako se moze kontrolisati loptica
+- Prvi put se shvata kako se moze kontrolisati loptica
 
 3
 - Maksimalan fitness postignut nakon 18 minuta treniranja
