@@ -146,12 +146,6 @@ class Simulator {
 			this.finished = true;
 		}
 
-		if(gene === 'L') {
-			this.pad.torque = -TORQUE;
-		}else if(gene === 'R') {
-			this.pad.torque = TORQUE;
-		}else {
-			this.pad.torque = 0;
-		}
+		this.pad.torque = GENES[gene];
 	}
 }

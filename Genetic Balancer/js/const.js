@@ -15,6 +15,12 @@ const MUTATION_GEN_PAUSE = 5; // Number of generations that need to live before 
 const TORQUE = 0.1; // Force at which after reading signle gene
 const FRICTION = 0; // Friction between balancing bodies
 
+const GENES = {
+	'L': -TORQUE,
+	'R': TORQUE,
+	'X': 0
+};
+
 function inputValid() {
 	if(TOTAL_POPULATION <= 1) {
 		console.error("Population must have multiple members. Change TOTAL_POPULATION!");

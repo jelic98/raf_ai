@@ -49,7 +49,11 @@ class DNA {
 	}
 
 	randomGene() {
-		var possible = ['L', 'R', 'X'];
+		var possible = [];
+
+		for(var gene in GENES) {
+			possible.push(gene);
+		}
 
 		return possible[floor(random(possible.length))];
 	}
