@@ -1,5 +1,5 @@
 // Project: Genetic Balancer
-// Author: Lazar Jelic - ljelic17@raf.rs
+// Author: Lazar Jelic - ljelic2718rn@raf.rs
 // Source: https://github.com/jelic98/raf_ai
 
 const TOTAL_POPULATION = 16; // Number of members in single population
