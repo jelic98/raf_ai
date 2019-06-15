@@ -1,4 +1,4 @@
-# RAF AI
+# RAF IS
 
 Projekat iz kursa *"Inteligentni sistemi"* na Računarskom fakultetu.
 
