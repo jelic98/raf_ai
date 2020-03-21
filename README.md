@@ -1,13 +1,15 @@
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # RAF IS
 
-Projekat iz kursa *"Inteligentni sistemi"* na Računarskom fakultetu.
+Project from *"Intelligent Systems"* course at Faculty of Computing in Belgrade.
 
 ## Genetic Balancer
 
-Bot koji pokušava da balansira lopticu znanjem stečenim primenom [genetskog algoritma](https://en.wikipedia.org/wiki/Genetic_algorithm). Za prirodnu selekciju korišćen je [rejection sampling](https://en.wikipedia.org/wiki/Rejection_sampling) (tzv. Monte Karlo metod). Tačka kidanja DNK je u direktnoj proporcionalnosti sa maksimalnom fitness vrednošću oba roditelja, što u ovom slučaju ubrzava evoluciju zato što su početni pokreti balansirajućeg tela bitniji od završnih. Stepen mutacije se smanjuje vremenom kako se ne bi premašilo dobro rešenje (DNK). Fizika je odrađena u [Matter.js](http://brm.io/matter-js).
+A bot trying to balance the ball with the knowledge gained from the application of a [genetic algorithm](https://en.wikipedia.org/wiki/Genetic_algorithm). For natural selection, [rejection sampling](https://en.wikipedia.org/wiki/Rejection_sampling) was used (Monte Carlo method). The point of breaking DNA is in direct proportion to the maximum fitness value of both parents, which in this case accelerates evolution because the initial movements of the balancing body are more important than the final ones. Mutation rate decreases over time to prevent overshooting good solution (DNA). Physics was done with [Matter.js](http://brm.io/matter-js).
 
-Demo je dostupan [ovde](https://lazarjelic.com/ecloga/projects/genetic).
+Take a look at this awesome [demo](https://lazarjelic.com/ecloga/projects/genetic).
 
 ### TODO
-* Physics dependency injection - Razdvojiti tela od same fizike, omogućiti da se može balansirati bilo šta
-* Single canvas - Umesto da se za svaku jedinku koristi poseban canvas, celu populaciju simulirati na jednom canvasu
+* Physics dependency injection - Separate bodies from physics itself, allow anything to be balanced
+* Single canvas - Instead of using a separate canvas for each individual, simulate the entire population on a single canvas
